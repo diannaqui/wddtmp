@@ -69,7 +69,7 @@ if (weather) {
       const desc = weatherData.weather[i].description;
 
       weatherIcon.setAttribute('src', iconsrc);
-      weatherIcon.setAttribute('alt', desc);
+      weatherIcon.setAttribute('alt', `Picture of ${desc}`);
       captionDesc.textContent = capital_letter(desc);
 
       weatherCard.appendChild(weatherIcon);
