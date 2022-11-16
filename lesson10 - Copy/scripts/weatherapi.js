@@ -18,6 +18,17 @@ if (weather) {
       return str.join(" ");
   }
 
+
+  /////////////////////////
+  // Calculate WindChill //
+  /////////////////////////
+
+  function windChill(tF, smH) {
+    const f = 35.74 + 0.6215 * tF - 35.75 * (smH**0.16) + 0.4275 * tF * (smH**0.16);
+    return f;
+  }
+
+
   /////////////////////////
   //       Display       //
   /////////////////////////
@@ -27,6 +38,8 @@ if (weather) {
     let weatherCard = document.createElement('section');
     let currentText = document.createElement('h2');
     let currentTemp = document.createElement('p');
+    let currentTextWind = document.createElement('h2');
+    let wind = document.createElement('p');
     let currentTextLL = document.createElement('h2');
     let latitudeLongitude = document.createElement('img');
     let gridLL = document.createElement('div')
@@ -64,9 +77,21 @@ if (weather) {
 
     }
 
-    // LATITUDE & LONGITUDE
+    // WIND CHILL // LATITUDE & LONGITUDE
 
+    currentTextWind.textContent = 'Wind Chill';
     currentTextLL.textContent = 'Latitude & Longitude';
+
+    const smH = weatherData.wind.speed;
+
+    if (tF <= 50 && smH > 3) { 
+      const windC = windChill(tF, smH);
+      wind.textContent = windC.toFixed(2);
+    }
+    
+    else {
+      wind.textContent = 'N/A';
+    }
 
     const globe = 'images/latitudeLongitude.svg';
     const descGlobe = 'Two globes showing latitude and longitude';
@@ -83,6 +108,8 @@ if (weather) {
     gridLL.appendChild(latitudeNumber);
     gridLL.appendChild(longitudeNumber);
 
+    weatherCard.appendChild(currentTextWind);
+    weatherCard.appendChild(wind);
     weatherCard.appendChild(currentTextLL);
     weatherCard.appendChild(latitudeLongitude);
     weatherCard.appendChild(gridLL);
@@ -96,7 +123,7 @@ if (weather) {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
+        console.log(data); // this is for testing the call
         displayResults(data);
       } else {
           throw Error(await response.text());
