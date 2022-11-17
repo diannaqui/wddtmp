@@ -12,9 +12,8 @@ if (weather) {
       str = str.split(" ");
 
       for (var i = 0; i < str.length; i++) {
-          str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+          str[i] = `${str[i][0].toUpperCase()}${str[i].substr(1)}`;
       }
-
       return str.join(" ");
   }
 
@@ -29,6 +28,7 @@ if (weather) {
     let currentTemp = document.createElement('p');
     let currentTextLL = document.createElement('h2');
     let latitudeLongitude = document.createElement('img');
+        latitudeLongitude.classList.add('lonlat');
     let gridLL = document.createElement('div')
     let latitudeNumber = document.createElement('p');
     let longitudeNumber = document.createElement('p');
@@ -45,7 +45,7 @@ if (weather) {
     weatherCard.appendChild(currentTemp);
 
 
-    // WEATHER ICON
+    // WEATHER ICON - multiple weather events
 
     for (let i = 0; i < weatherData.weather.length; i++) {
       
@@ -57,7 +57,7 @@ if (weather) {
 
       weatherIcon.setAttribute('src', iconsrc);
       weatherIcon.setAttribute('alt', `Picture of ${desc}`);
-      captionDesc.textContent = capital_letter(desc);
+      captionDesc.textContent = `ICON for "${capital_letter(desc)}"`;
 
       weatherCard.appendChild(weatherIcon);
       weatherCard.appendChild(captionDesc);
@@ -66,6 +66,7 @@ if (weather) {
 
     // LATITUDE & LONGITUDE
 
+    
     currentTextLL.textContent = 'Latitude & Longitude';
 
     const globe = 'images/latitudeLongitude.svg';
