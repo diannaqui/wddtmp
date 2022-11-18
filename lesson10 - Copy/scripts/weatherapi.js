@@ -63,12 +63,7 @@ if (weather) {
     let weatherCard = document.createElement('section');
     let currentText = document.createElement('h2');
     let currentTemp = document.createElement('p');
-    let currentTextLL = document.createElement('h2');
-    let latitudeLongitude = document.createElement('img');
-        latitudeLongitude.classList.add('lonlat');
-    let gridLL = document.createElement('div')
-    let latitudeNumber = document.createElement('p');
-    let longitudeNumber = document.createElement('p');
+
     
 
     // TEMPERATURE
@@ -76,7 +71,7 @@ if (weather) {
     currentText.textContent = 'Current condition & ICON';
 
     const tF = weatherData.main.temp.toFixed(0);
-    currentTemp.innerHTML = `The current temperature in Fairbanks, Alaska is <strong>${tF}</strong> &deg;F`;
+    currentTemp.innerHTML = `The The current temperature in Fairbanks, Alaska is <strong>${tF}</strong> &deg;F`;
 
     weatherCard.appendChild(currentText);
     weatherCard.appendChild(currentTemp);
@@ -101,29 +96,7 @@ if (weather) {
 
     }
 
-    // LATITUDE & LONGITUDE
 
-    
-    currentTextLL.textContent = 'Latitude & Longitude';
-
-    const globe = 'images/latitudeLongitude.svg';
-    const descGlobe = 'Two globes showing latitude and longitude';
-
-    latitudeLongitude.setAttribute('src', globe);
-    latitudeLongitude.setAttribute('alt', descGlobe);
-
-    let latitude = weatherData.coord.lat;
-    let longitude = weatherData.coord.lon;
-
-    latitudeNumber.textContent = latitude;
-    longitudeNumber.textContent = longitude;
-
-    gridLL.appendChild(latitudeNumber);
-    gridLL.appendChild(longitudeNumber);
-
-    weatherCard.appendChild(currentTextLL);
-    weatherCard.appendChild(latitudeLongitude);
-    weatherCard.appendChild(gridLL);
 
     document.querySelector('.weatherInfo').appendChild(weatherCard);
   }
