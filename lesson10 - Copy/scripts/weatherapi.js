@@ -79,13 +79,12 @@ if (weather) {
 
     // WEATHER ICON - multiple weather events
 
-    for (let i = 0; i < weatherData.weather.length; i++) {
       
       let weatherIcon = document.createElement('img');
       let captionDesc = document.createElement('figcaption');
 
-      const iconsrc = `https://openweathermap.org/img/wn/${weatherData.weather[i].icon}.png`;
-      const desc = weatherData.weather[i].description;
+      const iconsrc = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`;
+      const desc = weatherData.weather[0].description;
 
       weatherIcon.setAttribute('src', iconsrc);
       weatherIcon.setAttribute('alt', `Picture of ${desc}`);
@@ -94,7 +93,7 @@ if (weather) {
       weatherCard.appendChild(weatherIcon);
       weatherCard.appendChild(captionDesc);
 
-    }
+    
 
 
 
